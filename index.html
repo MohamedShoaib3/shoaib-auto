@@ -22,10 +22,8 @@
             padding: 20px;
         }
         .container { width: 100%; max-width: 400px; text-align: center; }
-        
         .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .btn-icon { background: var(--card-bg); border: 1px solid #333; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; }
-        
         .profile-ring {
             width: 120px; height: 120px; margin: 0 auto 15px;
             border-radius: 50%; padding: 3px;
@@ -33,9 +31,7 @@
             box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
         }
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-color); }
-        
-        .main-logo { width: 160px; margin-bottom: 10px; border-radius: 8px; }
-        
+        .main-logo { width: 160px; margin-bottom: 10px; }
         .grid-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
         .action-btn { 
             background: var(--card-bg); padding: 15px 5px; border-radius: 12px; 
@@ -46,14 +42,12 @@
         .btn-call { border-color: #8b0000; }
         .btn-wa { border-color: #25d366; }
         .btn-map { border-color: #0056b3; }
-
         .section-label { font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; opacity: 0.8; }
         .brands-card { 
             background: var(--card-bg); padding: 20px; border-radius: 15px; 
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; align-items: center;
         }
-        .brands-card img { width: 100%; filter: brightness(0) invert(1); opacity: 0.7; transition: 0.3s; }
-
+        .brands-card img { width: 100%; filter: brightness(0) invert(1); opacity: 0.7; }
         .pay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
         .pay-item { 
             background: var(--card-bg); padding: 10px; border-radius: 10px; 
@@ -61,71 +55,49 @@
             color: white; font-weight: bold; font-size: 14px;
         }
         .pay-item img { height: 20px; }
-
         .save-contact {
             width: 100%; padding: 16px; border-radius: 30px;
             background: transparent; border: 2px solid var(--accent);
             color: white; font-size: 16px; font-weight: bold;
-            cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="top-nav">
         <div class="btn-icon">AR | EN</div>
         <div class="btn-icon"><i class="fas fa-moon"></i></div>
     </div>
-
     <div class="profile-ring">
-        <!-- تم تعديل مسار الصورة ليطابق اسم الملف في المستودع -->
-        <img src="profile.jpg" class="profile-img" alt="Mohamed Shoaib">
+        <img src="profile.jpg" class="profile-img">
     </div>
-
-    <!-- تم تعديل مسار اللوجو ليطابق اسم الملف في المستودع -->
-    <img src="logo.png" class="main-logo" alt="Shoaib Auto Spare Parts">
+    <img src="logo.png" class="main-logo">
     <h2 style="margin: 5px 0;">Shoaib Auto Parts</h2>
     <p style="color: var(--accent); margin: 0; font-size: 14px;">Eng. Mohamed Shoaib</p>
-
     <div class="grid-actions">
-        <a href="tel:01055315541" class="action-btn btn-call">
-            <i class="fas fa-phone-alt"></i> اتصل الآن
-        </a>
-        <a href="https://wa.me/201055315541" class="action-btn btn-wa">
-            <i class="fab fa-whatsapp"></i> واتساب
-        </a>
-        <!-- يمكنك وضع رابط فرع المحلة الكبرى هنا -->
-        <a href="https://maps.google.com" class="action-btn btn-map">
-            <i class="fas fa-map-marker-alt"></i> الموقع
-        </a>
+        <a href="tel:01055315541" class="action-btn btn-call"><i class="fas fa-phone-alt"></i> اتصل</a>
+        <a href="https://wa.me/201055315541" class="action-btn btn-wa"><i class="fab fa-whatsapp"></i> واتساب</a>
+        <a href="https://maps.google.com" class="action-btn btn-map"><i class="fas fa-map-marker-alt"></i> الموقع</a>
     </div>
-
     <div class="section-label">BRANDS WE WORK WITH</div>
     <div class="brands-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg" alt="VW">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg" alt="Audi">
-        <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Skoda_Auto_logo_%282023%29.svg" alt="Skoda">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/SEAT_Logo_2017.svg" alt="Seat">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Skoda_Auto_logo_%282023%29.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/SEAT_Logo_2017.svg">
     </div>
-
     <div class="section-label" style="margin-top: 20px;">PAYMENT METHODS</div>
     <div class="pay-row">
         <div class="pay-item" style="border-left: 4px solid #4b2c85;">
-            <!-- تم تعديل مسار أيقونة إنستا باي -->
-            <img src="instapay.png" alt="InstaPay"> InstaPay
+            <img src="instapay.png"> InstaPay
         </div>
         <div class="pay-item" style="border-left: 4px solid #e60000;">
             <i class="fas fa-wallet" style="color: #e60000;"></i> Vodafone
         </div>
     </div>
-
-    <button class="save-contact">
-        <i class="fas fa-user-plus"></i> حفظ جهة الاتصال
-    </button>
-
+    <button class="save-contact"><i class="fas fa-user-plus"></i> حفظ جهة الاتصال</button>
     <p style="font-size: 10px; color: #555; margin-top: 25px;">SHOAIB AUTO PARTS © 2026</p>
 </div>
-
 </body>
 </html>
