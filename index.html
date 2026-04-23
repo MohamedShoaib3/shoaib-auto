@@ -1,103 +1,248 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoaib Auto Parts | شعيب لقطع الغيار</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --card-bg: #1a1a1a;
-            --accent: #e63946;
-            --text: #ffffff;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container { width: 100%; max-width: 400px; text-align: center; }
-        .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
-        .btn-icon { background: var(--card-bg); border: 1px solid #333; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; }
-        .profile-ring {
-            width: 120px; height: 120px; margin: 0 auto 15px;
-            border-radius: 50%; padding: 3px;
-            background: linear-gradient(45deg, var(--accent), #ff4d4d);
-            box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
-        }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-color); }
-        .main-logo { width: 160px; margin-bottom: 10px; }
-        .grid-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
-        .action-btn { 
-            background: var(--card-bg); padding: 15px 5px; border-radius: 12px; 
-            text-decoration: none; color: white; font-size: 13px;
-            transition: 0.3s; border-bottom: 3px solid transparent;
-        }
-        .action-btn i { display: block; font-size: 20px; margin-bottom: 8px; }
-        .btn-call { border-color: #8b0000; }
-        .btn-wa { border-color: #25d366; }
-        .btn-map { border-color: #0056b3; }
-        .section-label { font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; opacity: 0.8; }
-        .brands-card { 
-            background: var(--card-bg); padding: 20px; border-radius: 15px; 
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; align-items: center;
-        }
-        .brands-card img { width: 100%; filter: brightness(0) invert(1); opacity: 0.7; }
-        .pay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .pay-item { 
-            background: var(--card-bg); padding: 10px; border-radius: 10px; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            color: white; font-weight: bold; font-size: 14px;
-        }
-        .pay-item img { height: 20px; }
-        .save-contact {
-            width: 100%; padding: 16px; border-radius: 30px;
-            background: transparent; border: 2px solid var(--accent);
-            color: white; font-size: 16px; font-weight: bold;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شعيب لقطع غيار السيارات</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--red:#c0392b;--bg:#111;--card:#1a1a1a;--border:#2a2a2a;--text:#f0f0f0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--bg);
+font-family:'Cairo',sans-serif;
+color:var(--text);
+display:flex;justify-content:center;
+}
+
+.card{max-width:480px;width:100%}
+
+/* ===== HEADER ===== */
+.header{
+text-align:center;
+padding:30px 20px;
+}
+
+/* صورة */
+.avatar{
+width:110px;height:110px;
+margin:auto;border-radius:50%;
+overflow:hidden;
+border:3px solid #000;
+}
+.avatar img{
+width:100%;height:100%;
+object-fit:cover;
+}
+
+/* لوجو */
+.brand-arabic img{
+max-width:150px;
+margin:10px auto;
+display:block;
+}
+
+/* ===== BUTTONS ===== */
+.cta-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:10px;
+padding:10px;
+}
+
+.cta-btn{
+text-align:center;
+padding:12px;
+border-radius:10px;
+color:#fff;text-decoration:none;
+font-weight:700;
+}
+.call{background:#c0392b}
+.whatsapp{background:#25d366}
+.location{background:#2563eb}
+
+/* ===== INFO ===== */
+.info-row{
+display:flex;
+justify-content:space-between;
+background:var(--card);
+margin:10px;
+padding:12px;
+border-radius:10px;
+}
+
+/* ===== BRANDS ===== */
+.brands-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+padding:10px;
+}
+
+.brand-card{
+background:var(--card);
+padding:10px;
+border-radius:10px;
+text-align:center;
+}
+
+.brand-card img{
+width:40px;height:40px;
+object-fit:contain;
+filter:brightness(0) invert(1);
+margin:auto;
+}
+
+/* ===== PAY ===== */
+.payment-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:10px;
+}
+
+.pay-btn{
+display:flex;
+align-items:center;
+gap:10px;
+background:var(--card);
+padding:12px;
+border-radius:10px;
+}
+
+.pay-logo{
+width:35px;height:35px;
+}
+
+.pay-logo img{
+width:100%;height:100%;
+object-fit:contain;
+}
+
+/* ===== SAVE ===== */
+.save-btn{
+margin:10px;
+padding:15px;
+width:calc(100% - 20px);
+background:#c0392b;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+}
+
+img{display:block}
+</style>
 </head>
+
 <body>
-<div class="container">
-    <div class="top-nav">
-        <div class="btn-icon">AR | EN</div>
-        <div class="btn-icon"><i class="fas fa-moon"></i></div>
-    </div>
-    <div class="profile-ring">
-        <img src="profile.jpg" class="profile-img">
-    </div>
-    <img src="logo.png" class="main-logo">
-    <h2 style="margin: 5px 0;">Shoaib Auto Parts</h2>
-    <p style="color: var(--accent); margin: 0; font-size: 14px;">Eng. Mohamed Shoaib</p>
-    <div class="grid-actions">
-        <a href="tel:01055315541" class="action-btn btn-call"><i class="fas fa-phone-alt"></i> اتصل</a>
-        <a href="https://wa.me/201055315541" class="action-btn btn-wa"><i class="fab fa-whatsapp"></i> واتساب</a>
-        <a href="https://maps.google.com" class="action-btn btn-map"><i class="fas fa-map-marker-alt"></i> الموقع</a>
-    </div>
-    <div class="section-label">BRANDS WE WORK WITH</div>
-    <div class="brands-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg">
-        <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Skoda_Auto_logo_%282023%29.svg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/SEAT_Logo_2017.svg">
-    </div>
-    <div class="section-label" style="margin-top: 20px;">PAYMENT METHODS</div>
-    <div class="pay-row">
-        <div class="pay-item" style="border-left: 4px solid #4b2c85;">
-            <img src="instapay.png"> InstaPay
-        </div>
-        <div class="pay-item" style="border-left: 4px solid #e60000;">
-            <i class="fas fa-wallet" style="color: #e60000;"></i> Vodafone
-        </div>
-    </div>
-    <button class="save-contact"><i class="fas fa-user-plus"></i> حفظ جهة الاتصال</button>
-    <p style="font-size: 10px; color: #555; margin-top: 25px;">SHOAIB AUTO PARTS © 2026</p>
+<div class="card">
+
+<div class="header">
+
+<div class="avatar">
+<img src="me.jpg">
 </div>
+
+<div class="brand-arabic">
+<img src="logo.png">
+</div>
+
+<h2>Shoaib Auto Parts</h2>
+<p>Eng. Mohamed Shoaib</p>
+
+</div>
+
+<!-- BUTTONS -->
+<div class="cta-grid">
+<a href="tel:01055315541" class="cta-btn call">اتصل</a>
+<a href="https://wa.me/201055315541" class="cta-btn whatsapp">واتساب</a>
+<a href="https://maps.google.com?q=Al-Mahalla+Al-Kubra" class="cta-btn location">الموقع</a>
+</div>
+
+<!-- INFO -->
+<div class="info-row">
+<span>01055315541</span>
+<span>📞</span>
+</div>
+
+<div class="info-row">
+<span>المحلة الكبرى</span>
+<span>📍</span>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-grid">
+
+<div class="brand-card">
+<img src="skoda.png">
+<p>Skoda</p>
+</div>
+
+<div class="brand-card">
+<img src="vw.png">
+<p>VW</p>
+</div>
+
+<div class="brand-card">
+<img src="audi.png">
+<p>Audi</p>
+</div>
+
+<div class="brand-card">
+<img src="seat.png">
+<p>Seat</p>
+</div>
+
+</div>
+
+<!-- PAY -->
+<div class="payment-grid">
+
+<div class="pay-btn">
+<div class="pay-logo">
+<img src="instapay.png">
+</div>
+<span>InstaPay</span>
+</div>
+
+<div class="pay-btn">
+<div class="pay-logo">
+<img src="vodafone.png">
+</div>
+<span>Vodafone Cash</span>
+</div>
+
+</div>
+
+<button class="save-btn" onclick="saveContact()">
+حفظ الرقم
+</button>
+
+</div>
+
+<script>
+function saveContact(){
+const vcard=`BEGIN:VCARD
+VERSION:3.0
+FN:Mohamed Shoaib
+TEL:+201055315541
+END:VCARD`;
+
+const blob=new Blob([vcard],{type:'text/vcard'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='contact.vcf';
+a.click();
+}
+</script>
+
 </body>
 </html>
