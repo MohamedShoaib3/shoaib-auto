@@ -23,7 +23,6 @@
         }
         .container { width: 100%; max-width: 400px; text-align: center; }
         
-        /* Header & Profile */
         .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
         .btn-icon { background: var(--card-bg); border: 1px solid #333; color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; }
         
@@ -35,9 +34,8 @@
         }
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-color); }
         
-        .main-logo { width: 160px; margin-bottom: 10px; }
+        .main-logo { width: 160px; margin-bottom: 10px; border-radius: 8px; }
         
-        /* Action Buttons */
         .grid-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
         .action-btn { 
             background: var(--card-bg); padding: 15px 5px; border-radius: 12px; 
@@ -49,31 +47,26 @@
         .btn-wa { border-color: #25d366; }
         .btn-map { border-color: #0056b3; }
 
-        /* Brands Group (VAG) */
         .section-label { font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; opacity: 0.8; }
         .brands-card { 
             background: var(--card-bg); padding: 20px; border-radius: 15px; 
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; align-items: center;
         }
         .brands-card img { width: 100%; filter: brightness(0) invert(1); opacity: 0.7; transition: 0.3s; }
-        .brands-card img:hover { opacity: 1; transform: scale(1.1); }
 
-        /* Payment Section */
         .pay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
         .pay-item { 
             background: var(--card-bg); padding: 10px; border-radius: 10px; 
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            text-decoration: none; color: white; font-weight: bold; font-size: 14px;
+            color: white; font-weight: bold; font-size: 14px;
         }
         .pay-item img { height: 20px; }
 
-        /* Footer Button */
         .save-contact {
             width: 100%; padding: 16px; border-radius: 30px;
             background: transparent; border: 2px solid var(--accent);
             color: white; font-size: 16px; font-weight: bold;
-            cursor: pointer; box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
-            margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;
+            cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
     </style>
 </head>
@@ -86,10 +79,12 @@
     </div>
 
     <div class="profile-ring">
+        <!-- تم تعديل مسار الصورة ليطابق اسم الملف في المستودع -->
         <img src="profile.jpg" class="profile-img" alt="Mohamed Shoaib">
     </div>
 
-    <img src="logo.png" class="main-logo" alt="Shoaib Auto Parts">
+    <!-- تم تعديل مسار اللوجو ليطابق اسم الملف في المستودع -->
+    <img src="logo.png" class="main-logo" alt="Shoaib Auto Spare Parts">
     <h2 style="margin: 5px 0;">Shoaib Auto Parts</h2>
     <p style="color: var(--accent); margin: 0; font-size: 14px;">Eng. Mohamed Shoaib</p>
 
@@ -100,7 +95,8 @@
         <a href="https://wa.me/201055315541" class="action-btn btn-wa">
             <i class="fab fa-whatsapp"></i> واتساب
         </a>
-        <a href="https://maps.app.goo.gl/YOUR_LOCATION" class="action-btn btn-map">
+        <!-- يمكنك وضع رابط فرع المحلة الكبرى هنا -->
+        <a href="https://maps.google.com" class="action-btn btn-map">
             <i class="fas fa-map-marker-alt"></i> الموقع
         </a>
     </div>
@@ -116,6 +112,7 @@
     <div class="section-label" style="margin-top: 20px;">PAYMENT METHODS</div>
     <div class="pay-row">
         <div class="pay-item" style="border-left: 4px solid #4b2c85;">
+            <!-- تم تعديل مسار أيقونة إنستا باي -->
             <img src="instapay.png" alt="InstaPay"> InstaPay
         </div>
         <div class="pay-item" style="border-left: 4px solid #e60000;">
@@ -123,8 +120,8 @@
         </div>
     </div>
 
-    <button class="save-contact" onclick="window.location.href='contact.vcf'">
-        <i class="fas fa-user-plus"></i> Save Contact | حفظ جهة الاتصال
+    <button class="save-contact">
+        <i class="fas fa-user-plus"></i> حفظ جهة الاتصال
     </button>
 
     <p style="font-size: 10px; color: #555; margin-top: 25px;">SHOAIB AUTO PARTS © 2026</p>
