@@ -270,8 +270,14 @@ body {
 .brand-card:hover { transform: translateY(-3px); border-color: var(--red); }
 .brand-card img {
   width: 40px; height: 36px; object-fit: contain;
-  filter: var(--brand-filter);
   transition: filter 0.3s;
+}
+:root[data-theme="dark"] .brand-card img {
+  mix-blend-mode: screen;
+}
+:root[data-theme="light"] .brand-card img {
+  mix-blend-mode: multiply;
+  filter: brightness(0);
 }
 .brand-card p { font-size: 11px; color: var(--subtext); }
 
@@ -312,9 +318,9 @@ body {
 .pay-logo {
   width: 40px; height: 40px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.15); flex-shrink: 0; overflow: hidden;
+  background: transparent; flex-shrink: 0; overflow: hidden;
 }
-.pay-logo img { width: 32px; height: 32px; object-fit: contain; }
+.pay-logo img { width: 38px; height: 38px; object-fit: contain; }
 .pay-logo .emoji { font-size: 22px; }
 
 .pay-info .name { font-size: 14px; font-weight: 700; color: #fff; }
