@@ -175,7 +175,7 @@ body {
   gap: 2px;
 }
 .logo-wrap img {
-  max-height: 52px; max-width: 120px;
+  max-height: 80px; max-width: 180px;
   object-fit: contain; display: block;
 }
 .header-right h2 {
@@ -262,14 +262,14 @@ body {
 }
 .brand-card {
   background: var(--row-bg); border: 1px solid var(--card-border);
-  padding: 14px 6px 10px; border-radius: 13px;
-  text-align: center; display: flex; flex-direction: column;
-  align-items: center; gap: 6px;
+  padding: 14px 6px; border-radius: 13px;
+  text-align: center; display: flex;
+  align-items: center; justify-content: center;
   transition: transform 0.2s, border-color 0.2s;
 }
 .brand-card:hover { transform: translateY(-3px); border-color: var(--red); }
 .brand-card img {
-  width: 40px; height: 36px; object-fit: contain;
+  width: 56px; height: 46px; object-fit: contain;
   transition: filter 0.3s;
 }
 :root[data-theme="dark"] .brand-card img {
@@ -279,7 +279,6 @@ body {
   mix-blend-mode: multiply;
   filter: brightness(0);
 }
-.brand-card p { font-size: 11px; color: var(--subtext); }
 
 .brands-tagline {
   display: flex; align-items: center; justify-content: center;
@@ -418,8 +417,24 @@ body {
 
   <div class="divider anim-2"></div>
 
+  <!-- BRANDS — above CTA, no names, bigger logos -->
+  <div class="brands-grid anim-3">
+    <div class="brand-card">
+      <img src="audi.png" alt="Audi">
+    </div>
+    <div class="brand-card">
+      <img src="seat.png" alt="Seat">
+    </div>
+    <div class="brand-card">
+      <img src="vw.png" alt="Volkswagen">
+    </div>
+    <div class="brand-card">
+      <img src="skoda.png" alt="Skoda">
+    </div>
+  </div>
+
   <!-- CTA -->
-  <div class="cta-grid anim-3">
+  <div class="cta-grid anim-4">
     <a href="tel:01055315541" class="cta-btn call">
       <span class="icon">📞</span>
       <span class="ar">اتصل الآن</span>
@@ -438,7 +453,7 @@ body {
   </div>
 
   <!-- INFO -->
-  <div class="info-row anim-4">
+  <div class="info-row anim-5">
     <div class="info-icon">📞</div>
     <div class="info-text">
       <div class="label">Mobile</div>
@@ -447,7 +462,7 @@ body {
     <span class="action-icon">📞</span>
   </div>
 
-  <div class="info-row anim-4">
+  <div class="info-row anim-5">
     <div class="info-icon">📍</div>
     <div class="info-text">
       <div class="label">Address</div>
@@ -455,27 +470,6 @@ body {
       <div class="sub">Mahalla-Mansoura Road</div>
     </div>
     <span class="action-icon">🗺️</span>
-  </div>
-
-  <!-- BRANDS -->
-  <div class="section-title anim-5">BRANDS WE WORK WITH</div>
-  <div class="brands-grid anim-5">
-    <div class="brand-card">
-      <img src="audi.png" alt="Audi">
-      <p>Audi</p>
-    </div>
-    <div class="brand-card">
-      <img src="seat.png" alt="Seat">
-      <p>Seat</p>
-    </div>
-    <div class="brand-card">
-      <img src="vw.png" alt="Volkswagen">
-      <p>Volkswagen</p>
-    </div>
-    <div class="brand-card">
-      <img src="skoda.png" alt="Skoda">
-      <p>Skoda</p>
-    </div>
   </div>
 
   <div class="brands-tagline anim-5">
