@@ -1,248 +1,558 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>شعيب لقطع غيار السيارات</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{
---red:#c0392b;--bg:#111;--card:#1a1a1a;--border:#2a2a2a;--text:#f0f0f0;
+:root[data-theme="dark"] {
+  --bg: #0d0d0d;
+  --card-bg: #181818;
+  --card-border: #2a2a2a;
+  --text: #f0f0f0;
+  --subtext: #aaa;
+  --red: #c0392b;
+  --red-glow: rgba(192,57,43,0.4);
+  --row-bg: #1e1e1e;
+}
+:root[data-theme="light"] {
+  --bg: #f0f0f0;
+  --card-bg: #fff;
+  --card-border: #ddd;
+  --text: #111;
+  --subtext: #555;
+  --red: #c0392b;
+  --red-glow: rgba(192,57,43,0.2);
+  --row-bg: #f7f7f7;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+* { margin:0; padding:0; box-sizing:border-box; }
 
-body{
-background:var(--bg);
-font-family:'Cairo',sans-serif;
-color:var(--text);
-display:flex;justify-content:center;
+body {
+  background: var(--bg);
+  font-family: 'Cairo', sans-serif;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
-.card{max-width:480px;width:100%}
+.card {
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 4px 6px;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.theme-icon {
+  font-size: 14px;
+  padding: 2px 5px;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+.theme-icon.active {
+  background: rgba(255,255,255,0.2);
+}
 
 /* ===== HEADER ===== */
-.header{
-text-align:center;
-padding:30px 20px;
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px 20px;
 }
 
-/* صورة */
-.avatar{
-width:110px;height:110px;
-margin:auto;border-radius:50%;
-overflow:hidden;
-border:3px solid #000;
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--red);
+  box-shadow: 0 0 20px var(--red-glow), 0 0 40px var(--red-glow);
+  flex-shrink: 0;
 }
-.avatar img{
-width:100%;height:100%;
-object-fit:cover;
-}
-
-/* لوجو */
-.brand-arabic img{
-max-width:150px;
-margin:10px auto;
-display:block;
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ===== BUTTONS ===== */
-.cta-grid{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:10px;
-padding:10px;
+.header-info {
+  flex: 1;
 }
 
-.cta-btn{
-text-align:center;
-padding:12px;
-border-radius:10px;
-color:#fff;text-decoration:none;
-font-weight:700;
+.logo-wrap img {
+  max-height: 70px;
+  object-fit: contain;
 }
-.call{background:#c0392b}
-.whatsapp{background:#25d366}
-.location{background:#2563eb}
 
-/* ===== INFO ===== */
-.info-row{
-display:flex;
-justify-content:space-between;
-background:var(--card);
-margin:10px;
-padding:12px;
-border-radius:10px;
+.header-info h2 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
 }
+
+.header-info .specialty {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.header-info .engineer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--subtext);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--card-border), transparent);
+  margin: 0 14px;
+}
+
+/* ===== CTA BUTTONS ===== */
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 14px;
+}
+
+.cta-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Cairo', sans-serif;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:active { transform: scale(0.96); }
+
+.cta-btn .icon { font-size: 22px; }
+.cta-btn .ar { font-size: 13px; }
+.cta-btn .en { font-size: 11px; opacity: 0.85; }
+
+.call    { background: linear-gradient(135deg, #a93226, #c0392b); }
+.whatsapp{ background: linear-gradient(135deg, #1a9e50, #25d366); }
+.location{ background: linear-gradient(135deg, #1a4fbd, #2563eb); }
+
+/* ===== INFO ROWS ===== */
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--row-bg);
+  margin: 0 14px 10px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+}
+
+.info-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.info-text { flex: 1; }
+.info-text .label { font-size: 11px; color: var(--subtext); }
+.info-text .value { font-size: 14px; font-weight: 700; }
+.info-text .sub   { font-size: 11px; color: var(--subtext); margin-top: 1px; }
+
+.info-row .action-icon {
+  font-size: 20px;
+  color: var(--red);
+  opacity: 0.7;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--subtext);
+  margin: 14px 0 10px;
+  position: relative;
+}
+.section-title::before,
+.section-title::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 28%;
+  height: 1px;
+  background: var(--card-border);
+}
+.section-title::before { right: 0; }
+.section-title::after  { left: 0; }
 
 /* ===== BRANDS ===== */
-.brands-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-padding:10px;
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0 14px;
 }
 
-.brand-card{
-background:var(--card);
-padding:10px;
-border-radius:10px;
-text-align:center;
+.brand-card {
+  background: var(--row-bg);
+  border: 1px solid var(--card-border);
+  padding: 14px 8px;
+  border-radius: 12px;
+  text-align: center;
 }
 
-.brand-card img{
-width:40px;height:40px;
-object-fit:contain;
-filter:brightness(0) invert(1);
-margin:auto;
+.brand-card img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin: 0 auto 6px;
+}
+[data-theme="light"] .brand-card img { filter: none; }
+
+.brand-card p { font-size: 11px; color: var(--subtext); }
+
+.brands-tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 14px 0;
+  padding: 10px;
+  background: var(--row-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--subtext);
+}
+.brands-tagline .shield { color: var(--red); }
+.brands-tagline .dot { opacity: 0.4; }
+
+/* ===== PAYMENT ===== */
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px;
 }
 
-/* ===== PAY ===== */
-.payment-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-padding:10px;
+.pay-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--row-bg);
+  border: 1px solid var(--card-border);
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
 }
 
-.pay-btn{
-display:flex;
-align-items:center;
-gap:10px;
-background:var(--card);
-padding:12px;
-border-radius:10px;
+.pay-btn.vodafone { background: #c0392b; color: #fff; }
+
+.pay-logo {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.pay-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.pay-info .name { font-size: 13px; font-weight: 700; }
+.pay-info .tap  { font-size: 11px; opacity: 0.7; }
+
+/* ===== SOCIAL ===== */
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px;
 }
 
-.pay-logo{
-width:35px;height:35px;
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Cairo', sans-serif;
 }
 
-.pay-logo img{
-width:100%;height:100%;
-object-fit:contain;
-}
+.fb   { background: #1877f2; }
+.ig   { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.tt   { background: #010101; border: 1px solid #333; }
 
-/* ===== SAVE ===== */
-.save-btn{
-margin:10px;
-padding:15px;
-width:calc(100% - 20px);
-background:#c0392b;
-color:#fff;
-border:none;
-border-radius:10px;
-font-weight:700;
-cursor:pointer;
-}
+.social-btn .sicon { font-size: 18px; }
 
-img{display:block}
+/* ===== SAVE BTN ===== */
+.save-btn {
+  margin: 14px;
+  padding: 16px;
+  width: calc(100% - 28px);
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--red);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+.save-btn:hover { background: var(--red); color: #fff; }
+.save-btn .save-icon { font-size: 20px; }
+.save-btn .save-sub  { font-size: 11px; opacity: 0.7; display: block; font-weight: 400; }
+
+.save-text { text-align: center; }
+
+/* ===== BOTTOM PADDING ===== */
+.bottom-space { height: 20px; }
 </style>
 </head>
-
 <body>
 <div class="card">
 
-<div class="header">
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <button class="lang-btn" onclick="toggleLang()">🌐 AR | EN</button>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <span class="theme-icon active" id="sun">☀️</span>
+      <span class="theme-icon" id="moon">🌙</span>
+    </div>
+  </div>
 
-<div class="avatar">
-<img src="me.jpg">
-</div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="avatar">
+      <img src="me.jpg" onerror="this.src='https://ui-avatars.com/api/?name=MS&background=c0392b&color=fff&size=200'">
+    </div>
+    <div class="header-info">
+      <div class="logo-wrap">
+        <img src="logo.png" onerror="this.style.display='none'">
+      </div>
+      <h2>Shoaib Auto Parts</h2>
+      <div class="specialty">Auto Parts Specialist</div>
+      <div class="engineer">👤 Eng. Mohamed Shoaib</div>
+    </div>
+  </div>
 
-<div class="brand-arabic">
-<img src="logo.png">
-</div>
+  <div class="divider"></div>
 
-<h2>Shoaib Auto Parts</h2>
-<p>Eng. Mohamed Shoaib</p>
+  <!-- CTA BUTTONS -->
+  <div class="cta-grid">
+    <a href="tel:01055315541" class="cta-btn call">
+      <span class="icon">📞</span>
+      <span class="ar">اتصل الآن</span>
+      <span class="en">Call Now</span>
+    </a>
+    <a href="https://wa.me/201055315541" class="cta-btn whatsapp">
+      <span class="icon">💬</span>
+      <span class="ar">واتساب</span>
+      <span class="en">WhatsApp</span>
+    </a>
+    <a href="https://maps.google.com?q=Al-Mahalla+Al-Kubra+Gharbia" class="cta-btn location">
+      <span class="icon">📍</span>
+      <span class="ar">الموقع</span>
+      <span class="en">Directions</span>
+    </a>
+  </div>
 
-</div>
+  <!-- INFO ROWS -->
+  <div class="info-row">
+    <div class="info-icon">📞</div>
+    <div class="info-text">
+      <div class="label">Mobile</div>
+      <div class="value">010 5531 5541</div>
+    </div>
+    <span class="action-icon">📞</span>
+  </div>
 
-<!-- BUTTONS -->
-<div class="cta-grid">
-<a href="tel:01055315541" class="cta-btn call">اتصل</a>
-<a href="https://wa.me/201055315541" class="cta-btn whatsapp">واتساب</a>
-<a href="https://maps.google.com?q=Al-Mahalla+Al-Kubra" class="cta-btn location">الموقع</a>
-</div>
+  <div class="info-row">
+    <div class="info-icon">📍</div>
+    <div class="info-text">
+      <div class="label">Address</div>
+      <div class="value">Al-Mahalla Al-Kubra, Gharbia</div>
+      <div class="sub">Mahalla-Mansoura Road</div>
+    </div>
+    <span class="action-icon">🗺️</span>
+  </div>
 
-<!-- INFO -->
-<div class="info-row">
-<span>01055315541</span>
-<span>📞</span>
-</div>
+  <!-- BRANDS -->
+  <div class="section-title">BRANDS WE WORK WITH</div>
 
-<div class="info-row">
-<span>المحلة الكبرى</span>
-<span>📍</span>
-</div>
+  <div class="brands-grid">
+    <div class="brand-card">
+      <img src="skoda.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Skoda_Auto_2011_logo.svg/1200px-Skoda_Auto_2011_logo.svg.png'">
+      <p>Skoda</p>
+    </div>
+    <div class="brand-card">
+      <img src="vw.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/1024px-Volkswagen_logo_2019.svg.png'">
+      <p>Volkswagen</p>
+    </div>
+    <div class="brand-card">
+      <img src="seat.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/SEAT-Logo.svg/1024px-SEAT-Logo.svg.png'">
+      <p>Seat</p>
+    </div>
+    <div class="brand-card">
+      <img src="audi.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/1024px-Audi-Logo_2016.svg.png'">
+      <p>Audi</p>
+    </div>
+  </div>
 
-<!-- BRANDS -->
-<div class="brands-grid">
+  <div class="brands-tagline">
+    <span class="shield">🛡️</span>
+    <span>High Quality Parts</span>
+    <span class="dot">•</span>
+    <span>Best Prices</span>
+    <span class="dot">•</span>
+    <span>Trusted Service</span>
+  </div>
 
-<div class="brand-card">
-<img src="skoda.png">
-<p>Skoda</p>
-</div>
+  <!-- PAYMENT -->
+  <div class="section-title">PAYMENT METHODS</div>
 
-<div class="brand-card">
-<img src="vw.png">
-<p>VW</p>
-</div>
+  <div class="payment-grid">
+    <a href="#" class="pay-btn">
+      <div class="pay-logo">
+        <img src="instapay.png" onerror="this.parentElement.innerHTML='💳'">
+      </div>
+      <div class="pay-info">
+        <div class="name">InstaPay</div>
+        <div class="tap">Tap to Pay</div>
+      </div>
+    </a>
+    <a href="#" class="pay-btn vodafone">
+      <div class="pay-logo">
+        <img src="vodafone.png" onerror="this.parentElement.innerHTML='📱'">
+      </div>
+      <div class="pay-info">
+        <div class="name">Vodafone Cash</div>
+        <div class="tap">Tap to Pay</div>
+      </div>
+    </a>
+  </div>
 
-<div class="brand-card">
-<img src="audi.png">
-<p>Audi</p>
-</div>
+  <!-- SOCIAL -->
+  <div class="section-title">FOLLOW US</div>
 
-<div class="brand-card">
-<img src="seat.png">
-<p>Seat</p>
-</div>
+  <div class="social-grid">
+    <a href="#" class="social-btn fb">
+      <span class="sicon">📘</span>
+      <span>Facebook</span>
+    </a>
+    <a href="#" class="social-btn ig">
+      <span class="sicon">📷</span>
+      <span>Instagram</span>
+    </a>
+    <a href="#" class="social-btn tt">
+      <span class="sicon">🎵</span>
+      <span>TikTok</span>
+    </a>
+  </div>
 
-</div>
+  <!-- SAVE CONTACT -->
+  <button class="save-btn" onclick="saveContact()">
+    <span class="save-icon">👤</span>
+    <div class="save-text">
+      <span>Save Contact</span>
+      <span class="save-sub">Add our contact to your phone</span>
+    </div>
+  </button>
 
-<!-- PAY -->
-<div class="payment-grid">
-
-<div class="pay-btn">
-<div class="pay-logo">
-<img src="instapay.png">
-</div>
-<span>InstaPay</span>
-</div>
-
-<div class="pay-btn">
-<div class="pay-logo">
-<img src="vodafone.png">
-</div>
-<span>Vodafone Cash</span>
-</div>
-
-</div>
-
-<button class="save-btn" onclick="saveContact()">
-حفظ الرقم
-</button>
+  <div class="bottom-space"></div>
 
 </div>
 
 <script>
-function saveContact(){
-const vcard=`BEGIN:VCARD
-VERSION:3.0
-FN:Mohamed Shoaib
-TEL:+201055315541
-END:VCARD`;
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('sun').classList.toggle('active', !isDark);
+  document.getElementById('moon').classList.toggle('active', isDark);
+}
 
-const blob=new Blob([vcard],{type:'text/vcard'});
-const a=document.createElement('a');
-a.href=URL.createObjectURL(blob);
-a.download='contact.vcf';
-a.click();
+function toggleLang() {
+  const html = document.documentElement;
+  const isRtl = html.getAttribute('dir') === 'rtl';
+  html.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
+  html.setAttribute('lang', isRtl ? 'en' : 'ar');
+}
+
+function saveContact() {
+  const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Mohamed Shoaib\nORG:Shoaib Auto Parts\nTEL:+201055315541\nADR:;;Al-Mahalla Al-Kubra;Gharbia;;Egypt\nEND:VCARD`;
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Mohamed_Shoaib.vcf';
+  a.click();
 }
 </script>
-
 </body>
 </html>
