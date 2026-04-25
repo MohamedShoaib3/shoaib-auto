@@ -150,7 +150,7 @@ html, body {
 /* ===== HEADER ===== */
 .header {
   display: flex; align-items: center; justify-content: center;
-  gap: 16px; padding: 6px 20px 16px;
+  gap: 16px; padding: 2px 20px 8px;
 }
 .avatar {
   width: 90px; height: 90px; border-radius: 50%; overflow: hidden;
@@ -164,22 +164,36 @@ html, body {
   align-items: flex-start; gap: 1px;
 }
 .logo-wrap img {
-  height: 75px; width: auto; max-width: 170px;
+  height: 220px; width: auto;
   object-fit: contain; display: block;
-  margin-bottom: 2px;
+  margin-bottom: -8px;
 }
 .header-info h2 {
-  font-size: 19px; font-weight: 900;
-  letter-spacing: .3px; line-height: 1.2;
+  font-size: 21px; font-weight: 900;
+  letter-spacing: .3px; line-height: 1.1;
   white-space: nowrap;
+  color: var(--text);
 }
 .specialty {
   font-size: 11px; font-weight: 600;
   color: var(--red); letter-spacing: .5px;
+  margin-top: 1px;
 }
 .engineer {
-  font-size: 11px; color: var(--subtext);
-  display: flex; align-items: center; gap: 4px; margin-top: 1px;
+  font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; gap: 5px; margin-top: 3px;
+  /* الاسم بالألوان المميزة */
+  background: linear-gradient(135deg, #e74c3c 0%, #f39c12 55%, #e74c3c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: nameShine 3s linear infinite;
+}
+.engineer svg { flex-shrink:0; fill: #e74c3c; -webkit-text-fill-color: unset; }
+@keyframes nameShine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
 /* ===== DIVIDER ===== */
@@ -199,7 +213,14 @@ html, body {
   border-radius: 14px; padding: 12px 6px;
   display: flex; align-items: center; justify-content: center;
   transition: transform .2s, border-color .2s, box-shadow .2s;
-  cursor: default;
+  cursor: default; position: relative; overflow: hidden;
+}
+.brand-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.10) 50%, transparent 75%);
+  background-size: 300% auto;
+  animation: shimmer 3.5s linear infinite;
 }
 .brand-card:hover {
   transform: translateY(-3px);
@@ -223,21 +244,14 @@ html, body {
   gap: 6px; padding: 15px 6px; border-radius: 16px;
   color: #fff; text-decoration: none; font-weight: 700;
   font-family: 'Cairo', sans-serif;
-  transition: transform .15s, filter .15s;
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1), filter .15s;
   position: relative; overflow: hidden;
 }
-.cta-btn::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 50%, transparent 75%);
-  background-size: 300% auto;
-  animation: shimmer 2.8s linear infinite;
-}
+.cta-btn:hover { transform: translateY(-4px) scale(1.04); }
 .cta-btn:active { transform: scale(.94); filter: brightness(.88); }
 .cta-btn .cta-icon { width: 28px; height: 28px; }
 .cta-btn .cta-icon svg { width:100%; height:100%; fill:white; }
-.cta-btn .ar { font-size: 13px; line-height: 1; }
-.cta-btn .en { font-size: 10px; opacity: .8; }
+.cta-btn .lbl { font-size: 13px; line-height: 1; }
 
 .call     { background: linear-gradient(150deg,#e74c3c,#a93226); }
 .whatsapp { background: linear-gradient(150deg,#25d366,#1a9f50); }
@@ -317,14 +331,15 @@ html, body {
 .pay-btn.instapay { background: linear-gradient(135deg,#3a0080,#6a1fd1); }
 
 .pay-logo-wrap {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(255,255,255,.12);
+  width: 44px; height: 44px; border-radius: 10px;
+  background: transparent;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; overflow: hidden;
 }
 .pay-logo-wrap img {
-  width: 34px; height: 34px; object-fit: contain;
+  width: 40px; height: 40px; object-fit: contain;
   mix-blend-mode: screen;
+  filter: brightness(1.2);
 }
 .pay-info .pname { font-size: 13px; font-weight: 800; color: #fff; }
 .pay-info .ptap  { font-size: 10px; color: rgba(255,255,255,.65); }
@@ -340,11 +355,28 @@ html, body {
   text-decoration: none; color: #fff;
   font-weight: 700; font-size: 12px;
   font-family: 'Cairo', sans-serif;
-  transition: transform .15s, filter .15s;
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1), filter .15s;
   position: relative; overflow: hidden;
 }
-.soc-btn:hover  { transform: translateY(-2px); filter: brightness(1.1); }
+.soc-btn:hover  { transform: translateY(-4px) scale(1.05); filter: brightness(1.15); }
 .soc-btn:active { transform: scale(.94); }
+/* glowing border pulse on social */
+.soc-btn::before {
+  content: '';
+  position: absolute; inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,.3), transparent, rgba(255,255,255,.3));
+  background-size: 300% 300%;
+  animation: borderSpin 4s linear infinite;
+  z-index: 0; opacity: 0;
+  transition: opacity .3s;
+}
+.soc-btn:hover::before { opacity: 1; }
+.soc-btn .si, .soc-btn span { position: relative; z-index: 1; }
+@keyframes borderSpin {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
 .soc-btn .si { display:flex; align-items:center; justify-content:center; }
 .si svg { width:18px; height:18px; fill:white; }
 .fb { background: #1877f2; }
@@ -409,7 +441,6 @@ html, body {
       <h2 data-ar="شعيب لقطع الغيار" data-en="Shoaib Auto Parts">Shoaib Auto Parts</h2>
       <div class="specialty" data-ar="متخصص قطع غيار السيارات" data-en="Auto Parts Specialist">Auto Parts Specialist</div>
       <div class="engineer">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
         <span data-ar="م. محمد شعيب" data-en="Eng. Mohamed Shoaib">Eng. Mohamed Shoaib</span>
       </div>
     </div>
@@ -431,22 +462,19 @@ html, body {
       <span class="cta-icon">
         <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
       </span>
-      <span class="ar" data-ar="اتصل الآن" data-en="Call Now">اتصل الآن</span>
-      <span class="en" data-ar="اتصل الآن" data-en="Call Now">Call Now</span>
+      <span class="lbl" data-ar="اتصل الآن" data-en="Call Now">Call Now</span>
     </a>
     <a href="https://wa.me/201055315541" class="cta-btn whatsapp">
       <span class="cta-icon">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </span>
-      <span class="ar" data-ar="واتساب" data-en="WhatsApp">واتساب</span>
-      <span class="en" data-ar="واتساب" data-en="WhatsApp">WhatsApp</span>
+      <span class="lbl" data-ar="واتساب" data-en="WhatsApp">WhatsApp</span>
     </a>
     <a href="https://maps.app.goo.gl/oEkmmaAeCorEdosd6" class="cta-btn loc">
       <span class="cta-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
       </span>
-      <span class="ar" data-ar="الموقع" data-en="Directions">الموقع</span>
-      <span class="en" data-ar="الموقع" data-en="Directions">Directions</span>
+      <span class="lbl" data-ar="الموقع" data-en="Directions">Directions</span>
     </a>
   </div>
 
@@ -579,11 +607,11 @@ function setLang(lang) {
 
 /* ── SAVE CONTACT ── */
 function saveContact() {
-  const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Mohamed Shoaib\nORG:Shoaib Auto Parts\nTEL;TYPE=CELL:+201055315541\nADR;TYPE=WORK:;;Al-Mahalla Al-Kubra - Mahalla-Mansoura Road;Gharbia;;Egypt\nURL:https://www.facebook.com/share/173MZmTahC/\nEND:VCARD`;
+  const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:م. محمد شعيب\nN:شعيب;محمد;;م.;\nORG:شعيب لقطع غيار السيارات\nTEL;TYPE=CELL:+201055315541\nADR;TYPE=WORK:;;المحلة الكبرى - طريق المحلة / المنصورة;الغربية;;مصر\nURL:https://www.facebook.com/share/173MZmTahC/\nEND:VCARD`;
   const blob = new Blob([vcard], { type: 'text/vcard' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'Mohamed_Shoaib.vcf';
+  a.download = 'محمد_شعيب.vcf';
   a.click();
 }
 </script>
