@@ -31,390 +31,298 @@
   --toggle-border: rgba(0,0,0,0.12);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-
-html, body {
-  background: var(--bg);
-  font-family: 'Cairo', sans-serif;
-  color: var(--text);
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  transition: background 0.4s, color 0.4s;
-  overflow-x: hidden;
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body {
+  background:var(--bg); font-family:'Cairo',sans-serif; color:var(--text);
+  display:flex; justify-content:center; min-height:100vh;
+  transition:background .4s,color .4s; overflow-x:hidden;
 }
+.card { max-width:430px; width:100%; position:relative; padding-bottom:30px; }
 
-.card {
-  max-width: 430px;
-  width: 100%;
-  position: relative;
-  padding-bottom: 30px;
-}
-
-/* ===== BACKGROUND ===== */
+/* ===== BG ===== */
 .bg-pattern {
-  position: fixed;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 430px; height: 100vh;
-  pointer-events: none; z-index: 0; overflow: hidden;
+  position:fixed; top:0; left:50%; transform:translateX(-50%);
+  width:430px; height:100vh; pointer-events:none; z-index:0; overflow:hidden;
 }
 .bg-pattern::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    45deg, transparent, transparent 30px,
-    rgba(192,57,43,0.03) 30px, rgba(192,57,43,0.03) 32px
-  );
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(192,57,43,.03) 30px,rgba(192,57,43,.03) 32px);
 }
 .bg-pattern::after {
-  content: '';
-  position: absolute;
-  top: -150px; left: -100px;
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(192,57,43,0.13) 0%, transparent 65%);
-  animation: bgPulse 5s ease-in-out infinite;
+  content:''; position:absolute; top:-150px; left:-100px;
+  width:520px; height:520px;
+  background:radial-gradient(circle,rgba(192,57,43,.13) 0%,transparent 65%);
+  animation:bgPulse 5s ease-in-out infinite;
 }
-@keyframes bgPulse {
-  0%,100% { opacity:.5; transform:scale(1); }
-  50%      { opacity:1;  transform:scale(1.1); }
-}
-.card > * { position: relative; z-index: 1; }
+@keyframes bgPulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.card>*{position:relative;z-index:1;}
 
 /* ===== KEYFRAMES ===== */
 @keyframes fadeUp {
-  from { opacity:0; transform:translateY(22px); }
-  to   { opacity:1; transform:translateY(0); }
+  from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)}
 }
-@keyframes shimmer {
-  0%   { background-position: -300% center; }
-  100% { background-position: 300% center; }
+@keyframes shimmerImg {
+  0%  {left:-100%}
+  100%{left:200%}
 }
 @keyframes ringPulse {
-  0%,100% { box-shadow: 0 0 0 3px var(--red), 0 0 20px var(--red-glow), 0 0 50px var(--red-glow); }
-  50%      { box-shadow: 0 0 0 3px var(--red2), 0 0 35px var(--red-glow), 0 0 80px var(--red-glow); }
+  0%,100%{box-shadow:0 0 0 3px var(--red),0 0 20px var(--red-glow),0 0 50px var(--red-glow)}
+  50%    {box-shadow:0 0 0 3px var(--red2),0 0 35px var(--red-glow),0 0 80px var(--red-glow)}
 }
 @keyframes float {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)}
 }
-@keyframes scaleIn {
-  from { opacity:0; transform:scale(0.85); }
-  to   { opacity:1; transform:scale(1); }
+@keyframes nameShine {
+  0%{background-position:0% center} 100%{background-position:200% center}
+}
+@keyframes savePulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.6)}
+  50%    {box-shadow:0 0 0 10px rgba(192,57,43,0)}
+}
+@keyframes saveShimmer {
+  0%  {background-position:-200% center}
+  100%{background-position:200% center}
+}
+@keyframes borderSpin {
+  0%  {background-position:0% 50%}
+  100%{background-position:300% 50%}
 }
 
-/* stagger delays */
-.d1 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .05s; }
-.d2 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .15s; }
-.d3 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .25s; }
-.d4 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .35s; }
-.d5 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .45s; }
-.d6 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .55s; }
-.d7 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .65s; }
-.d8 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .75s; }
-.d9 { animation: fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .85s; }
+/* delays */
+.d1{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .05s}
+.d2{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .15s}
+.d3{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .25s}
+.d4{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .35s}
+.d5{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .45s}
+.d6{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .55s}
+.d7{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .65s}
+.d8{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .75s}
 
 /* ===== TOP BAR ===== */
-.top-bar {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 16px 8px; direction: ltr;
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 8px;direction:ltr;}
+.theme-toggle{
+  display:flex;align-items:center;background:var(--toggle-bg);border:1px solid var(--toggle-border);
+  border-radius:24px;padding:5px 8px;gap:2px;cursor:pointer;transition:background .3s;
 }
-.theme-toggle {
-  display: flex; align-items: center;
-  background: var(--toggle-bg); border: 1px solid var(--toggle-border);
-  border-radius: 24px; padding: 5px 8px; gap: 2px; cursor: pointer;
-  transition: background .3s;
+.theme-icon{font-size:14px;padding:3px 7px;border-radius:14px;transition:background .3s;}
+.theme-icon.active{background:rgba(255,255,255,.18);}
+[data-theme="light"] .theme-icon.active{background:rgba(0,0,0,.12);}
+.lang-toggle{
+  display:flex;align-items:center;background:var(--toggle-bg);border:1px solid var(--toggle-border);
+  border-radius:24px;padding:4px;gap:2px;
 }
-.theme-icon {
-  font-size: 14px; padding: 3px 7px; border-radius: 14px;
-  transition: background .3s;
+.lang-opt{
+  padding:4px 10px;border-radius:16px;font-size:12px;font-weight:700;cursor:pointer;
+  transition:background .25s,color .25s;color:var(--subtext);user-select:none;font-family:'Cairo',sans-serif;
 }
-.theme-icon.active { background: rgba(255,255,255,.18); }
-[data-theme="light"] .theme-icon.active { background: rgba(0,0,0,.12); }
-
-.lang-toggle {
-  display: flex; align-items: center;
-  background: var(--toggle-bg); border: 1px solid var(--toggle-border);
-  border-radius: 24px; padding: 4px; gap: 2px;
-}
-.lang-opt {
-  padding: 4px 10px; border-radius: 16px; font-size: 12px;
-  font-weight: 700; cursor: pointer; transition: background .25s, color .25s;
-  color: var(--subtext); user-select: none;
-  font-family: 'Cairo', sans-serif;
-}
-.lang-opt.active {
-  background: var(--red); color: #fff;
-}
+.lang-opt.active{background:var(--red);color:#fff;}
 
 /* ===== HEADER ===== */
-.header {
-  display: flex; align-items: center; justify-content: center;
-  gap: 16px; padding: 2px 20px 8px;
+.header{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;padding:4px 20px 10px;
 }
-.avatar {
-  width: 90px; height: 90px; border-radius: 50%; overflow: hidden;
-  flex-shrink: 0;
-  animation: ringPulse 3s ease-in-out infinite, float 4s ease-in-out infinite;
+.avatar{
+  width:90px;height:90px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  animation:ringPulse 3s ease-in-out infinite, float 4s ease-in-out infinite;
 }
-.avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 
-.header-info {
-  display: flex; flex-direction: column;
-  align-items: flex-start; gap: 1px;
+.header-info{display:flex;flex-direction:column;align-items:flex-start;gap:2px;}
+
+/* لوجو كبير — نفس حجم المستخدم مع مسافات مضغوطة */
+.logo-wrap{line-height:0;margin-bottom:-2px;}
+.logo-wrap img{
+  height:220px;width:auto;max-width:230px;
+  object-fit:contain;display:block;
 }
-.logo-wrap img {
-  height: 220px; width: auto;
-  object-fit: contain; display: block;
-  margin-bottom: -8px;
+
+/* اسم المحل */
+.header-info h2{
+  font-size:20px;font-weight:900;letter-spacing:.3px;line-height:1.1;
+  white-space:nowrap;color:var(--text);
+  margin-top:-6px; /* ضغط المسافة بين اللوجو والاسم */
 }
-.header-info h2 {
-  font-size: 21px; font-weight: 900;
-  letter-spacing: .3px; line-height: 1.1;
-  white-space: nowrap;
-  color: var(--text);
-}
-.specialty {
-  font-size: 11px; font-weight: 600;
-  color: var(--red); letter-spacing: .5px;
-  margin-top: 1px;
-}
-.engineer {
-  font-size: 13px; font-weight: 800;
-  display: flex; align-items: center; gap: 5px; margin-top: 3px;
-  /* الاسم بالألوان المميزة */
-  background: linear-gradient(135deg, #e74c3c 0%, #f39c12 55%, #e74c3c 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: nameShine 3s linear infinite;
-}
-.engineer svg { flex-shrink:0; fill: #e74c3c; -webkit-text-fill-color: unset; }
-@keyframes nameShine {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
+
+/* اسم المهندس بالألوان */
+.engineer{
+  font-size:14px;font-weight:800;margin-top:1px;
+  background:linear-gradient(135deg,#e74c3c 0%,#f39c12 50%,#e74c3c 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:nameShine 3s linear infinite;
+  white-space:nowrap;
 }
 
 /* ===== DIVIDER ===== */
-.divider {
-  height: 1px; margin: 0 16px 2px;
-  background: linear-gradient(to right, transparent, var(--card-border), transparent);
-}
+.divider{height:1px;margin:0 16px 2px;background:linear-gradient(to right,transparent,var(--card-border),transparent);}
 
-/* ===== BRANDS STRIP ===== */
-.brands-strip {
-  display: flex; gap: 8px; padding: 10px 16px;
-  justify-content: center;
+/* ===== BRANDS — shimmer على الصورة فقط ===== */
+.brands-strip{display:flex;gap:8px;padding:10px 16px;justify-content:center;}
+.brand-card{
+  flex:1;background:var(--row-bg);border:1px solid var(--card-border);
+  border-radius:14px;padding:12px 6px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  cursor:default;
 }
-.brand-card {
-  flex: 1;
-  background: var(--row-bg); border: 1px solid var(--card-border);
-  border-radius: 14px; padding: 12px 6px;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
-  cursor: default; position: relative; overflow: hidden;
-}
-.brand-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.10) 50%, transparent 75%);
-  background-size: 300% auto;
-  animation: shimmer 3.5s linear infinite;
-}
-.brand-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--red);
-  box-shadow: 0 4px 16px rgba(192,57,43,.2);
-}
-.brand-card img {
-  width: 52px; height: 42px; object-fit: contain;
-}
-[data-theme="dark"] .brand-card img { mix-blend-mode: screen; }
-[data-theme="light"] .brand-card img { mix-blend-mode: multiply; filter: brightness(0); }
+.brand-card:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 4px 16px rgba(192,57,43,.2);}
 
-/* ===== CTA BUTTONS ===== */
-.cta-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px; padding: 0 16px 10px;
+/* wrapper على الصورة نفسها */
+.brand-img-wrap{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.brand-img-wrap::after{
+  content:'';
+  position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  animation:shimmerImg 2.8s ease-in-out infinite;
+  pointer-events:none;
 }
-.cta-btn {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 6px; padding: 15px 6px; border-radius: 16px;
-  color: #fff; text-decoration: none; font-weight: 700;
-  font-family: 'Cairo', sans-serif;
-  transition: transform .18s cubic-bezier(.34,1.56,.64,1), filter .15s;
-  position: relative; overflow: hidden;
-}
-.cta-btn:hover { transform: translateY(-4px) scale(1.04); }
-.cta-btn:active { transform: scale(.94); filter: brightness(.88); }
-.cta-btn .cta-icon { width: 28px; height: 28px; }
-.cta-btn .cta-icon svg { width:100%; height:100%; fill:white; }
-.cta-btn .lbl { font-size: 13px; line-height: 1; }
+.brand-card img{width:52px;height:42px;object-fit:contain;display:block;}
+[data-theme="dark"] .brand-card img{mix-blend-mode:screen;}
+[data-theme="light"] .brand-card img{mix-blend-mode:multiply;filter:brightness(0);}
 
-.call     { background: linear-gradient(150deg,#e74c3c,#a93226); }
-.whatsapp { background: linear-gradient(150deg,#25d366,#1a9f50); }
-.loc      { background: linear-gradient(150deg,#3b82f6,#1d4ed8); }
+/* ===== CTA ===== */
+.cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px 10px;}
+.cta-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:15px 6px;border-radius:16px;color:#fff;
+  text-decoration:none;font-weight:700;font-family:'Cairo',sans-serif;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),filter .15s;
+  position:relative;overflow:hidden;
+}
+.cta-btn:hover{transform:translateY(-4px) scale(1.04);}
+.cta-btn:active{transform:scale(.94);filter:brightness(.88);}
+.cta-btn .cta-icon{width:28px;height:28px;}
+.cta-btn .cta-icon svg{width:100%;height:100%;fill:white;}
+.cta-btn .lbl{font-size:13px;line-height:1;}
+.call    {background:linear-gradient(150deg,#e74c3c,#a93226);}
+.whatsapp{background:linear-gradient(150deg,#25d366,#1a9f50);}
+.loc     {background:linear-gradient(150deg,#3b82f6,#1d4ed8);}
 
 /* ===== INFO ROWS ===== */
-.info-row {
-  display: flex; align-items: center; gap: 12px;
-  background: var(--row-bg); margin: 0 16px 10px;
-  padding: 13px 15px; border-radius: 14px;
-  border: 1px solid var(--card-border);
-  transition: transform .2s, box-shadow .2s;
-  text-decoration: none; color: var(--text);
+.info-row{
+  display:flex;align-items:center;gap:12px;background:var(--row-bg);
+  margin:0 16px 10px;padding:13px 15px;border-radius:14px;
+  border:1px solid var(--card-border);
+  transition:transform .2s,box-shadow .2s;text-decoration:none;color:var(--text);
 }
-.info-row:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+.info-row:hover{transform:translateY(-2px);box-shadow:0 4px 18px rgba(0,0,0,.18);}
+.info-icon-wrap{
+  width:40px;height:40px;background:var(--red);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.info-icon-wrap {
-  width: 40px; height: 40px; background: var(--red);
-  border-radius: 50%; display: flex; align-items: center;
-  justify-content: center; flex-shrink: 0;
-}
-.info-icon-wrap svg { width:18px; height:18px; fill:white; }
-.info-text { flex:1; }
-.info-text .lbl { font-size: 10px; color: var(--subtext); margin-bottom: 2px; letter-spacing:.5px; }
-.info-text .val { font-size: 14px; font-weight: 700; direction:ltr; }
-.info-text .sub { font-size: 11px; color: var(--subtext); margin-top: 2px; }
-.info-action { color: var(--red); opacity:.7; }
-.info-action svg { width:20px; height:20px; fill:currentColor; }
+.info-icon-wrap svg{width:18px;height:18px;fill:white;}
+.info-text{flex:1;}
+.info-text .lbl{font-size:10px;color:var(--subtext);margin-bottom:2px;letter-spacing:.5px;}
+.info-text .val{font-size:14px;font-weight:700;direction:ltr;}
+.info-text .sub{font-size:11px;color:var(--subtext);margin-top:2px;}
+.info-action{color:var(--red);opacity:.7;}
+.info-action svg{width:20px;height:20px;fill:currentColor;}
 
 /* ===== TAGLINE ===== */
-.tagline {
-  display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: 6px;
-  margin: 0 16px 4px; padding: 10px 14px;
-  background: var(--row-bg); border: 1px solid var(--card-border);
-  border-radius: 12px; font-size: 11.5px; color: var(--subtext);
+.tagline{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;
+  margin:0 16px 4px;padding:10px 14px;background:var(--row-bg);
+  border:1px solid var(--card-border);border-radius:12px;
+  font-size:11.5px;color:var(--subtext);
 }
-.tagline .shield { color: var(--red); font-size: 13px; }
-.tagline .dot { opacity:.3; }
+.tagline .shield{color:var(--red);font-size:13px;}
+.tagline .dot{opacity:.3;}
 
 /* ===== SECTION TITLE ===== */
-.sec-title {
-  text-align: center; font-size: 10px; font-weight: 700;
-  letter-spacing: 3px; color: var(--subtext);
-  margin: 18px 0 10px; position: relative;
+.sec-title{
+  text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;
+  color:var(--subtext);margin:18px 0 10px;position:relative;
 }
-.sec-title::before, .sec-title::after {
-  content:''; position:absolute; top:50%;
-  width:28%; height:1px; background:var(--card-border);
-}
-.sec-title::before { right:0; }
-.sec-title::after  { left:0; }
+.sec-title::before,.sec-title::after{content:'';position:absolute;top:50%;width:28%;height:1px;background:var(--card-border);}
+.sec-title::before{right:0;} .sec-title::after{left:0;}
 
 /* ===== PAYMENT ===== */
-.pay-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; padding: 0 16px;
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
+.pay-btn{
+  display:flex;align-items:center;gap:10px;padding:14px 15px;border-radius:14px;
+  text-decoration:none;border:none;transition:transform .15s,filter .15s;
+  position:relative;overflow:hidden;
 }
-.pay-btn {
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 15px; border-radius: 14px;
-  text-decoration: none; border: none;
-  transition: transform .15s, filter .15s;
-  position: relative; overflow: hidden;
+.pay-btn:active{transform:scale(.95);}
+.pay-btn.vodafone{background:linear-gradient(135deg,#e0001a,#b50016);}
+.pay-btn.instapay{background:linear-gradient(135deg,#3a0080,#6a1fd1);}
+.pay-logo-wrap{
+  width:44px;height:44px;border-radius:10px;background:transparent;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;
 }
-.pay-btn::after {
-  content:'';
-  position:absolute; inset:0;
-  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.12) 50%, transparent 75%);
-  background-size: 300% auto;
-  animation: shimmer 3s linear infinite;
-}
-.pay-btn:active { transform:scale(.95); }
-.pay-btn.vodafone { background: linear-gradient(135deg,#e0001a,#b50016); }
-.pay-btn.instapay { background: linear-gradient(135deg,#3a0080,#6a1fd1); }
-
-.pay-logo-wrap {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: transparent;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; overflow: hidden;
-}
-.pay-logo-wrap img {
-  width: 40px; height: 40px; object-fit: contain;
-  mix-blend-mode: screen;
-  filter: brightness(1.2);
-}
-.pay-info .pname { font-size: 13px; font-weight: 800; color: #fff; }
-.pay-info .ptap  { font-size: 10px; color: rgba(255,255,255,.65); }
+.pay-logo-wrap img{width:40px;height:40px;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.2);}
+.pay-info .pname{font-size:13px;font-weight:800;color:#fff;}
+.pay-info .ptap{font-size:10px;color:rgba(255,255,255,.65);}
 
 /* ===== SOCIAL ===== */
-.social-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px; padding: 0 16px;
+.social-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px;}
+.soc-btn{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:13px 6px;border-radius:14px;text-decoration:none;color:#fff;
+  font-weight:700;font-size:12px;font-family:'Cairo',sans-serif;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),filter .15s;
+  position:relative;overflow:hidden;
 }
-.soc-btn {
-  display: flex; align-items: center; justify-content: center;
-  gap: 7px; padding: 13px 6px; border-radius: 14px;
-  text-decoration: none; color: #fff;
-  font-weight: 700; font-size: 12px;
-  font-family: 'Cairo', sans-serif;
-  transition: transform .18s cubic-bezier(.34,1.56,.64,1), filter .15s;
-  position: relative; overflow: hidden;
+.soc-btn:hover{transform:translateY(-4px) scale(1.05);filter:brightness(1.15);}
+.soc-btn:active{transform:scale(.94);}
+.soc-btn::before{
+  content:'';position:absolute;inset:-2px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.3),transparent,rgba(255,255,255,.3));
+  background-size:300% 300%;animation:borderSpin 4s linear infinite;
+  z-index:0;opacity:0;transition:opacity .3s;
 }
-.soc-btn:hover  { transform: translateY(-4px) scale(1.05); filter: brightness(1.15); }
-.soc-btn:active { transform: scale(.94); }
-/* glowing border pulse on social */
-.soc-btn::before {
-  content: '';
-  position: absolute; inset: -2px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255,255,255,.3), transparent, rgba(255,255,255,.3));
-  background-size: 300% 300%;
-  animation: borderSpin 4s linear infinite;
-  z-index: 0; opacity: 0;
-  transition: opacity .3s;
-}
-.soc-btn:hover::before { opacity: 1; }
-.soc-btn .si, .soc-btn span { position: relative; z-index: 1; }
-@keyframes borderSpin {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
-.soc-btn .si { display:flex; align-items:center; justify-content:center; }
-.si svg { width:18px; height:18px; fill:white; }
-.fb { background: #1877f2; }
-.ig { background: linear-gradient(135deg,#405de6,#833ab4,#c13584,#e1306c,#fd1d1d,#fcb045); }
-.tt { background: #010101; border:1px solid #2a2a2a; }
+.soc-btn:hover::before{opacity:1;}
+.soc-btn .si,.soc-btn span{position:relative;z-index:1;}
+.soc-btn .si{display:flex;align-items:center;justify-content:center;}
+.si svg{width:18px;height:18px;fill:white;}
+.fb{background:#1877f2;}
+.ig{background:linear-gradient(135deg,#405de6,#833ab4,#c13584,#e1306c,#fd1d1d,#fcb045);}
+.tt{background:#010101;border:1px solid #2a2a2a;}
 
-/* ===== SAVE BTN ===== */
-.save-btn {
-  margin: 16px; padding: 16px;
-  width: calc(100% - 32px);
-  background: transparent; color: var(--text);
-  border: 1.5px solid var(--red); border-radius: 14px;
-  font-weight: 700; font-size: 15px;
-  font-family: 'Cairo', sans-serif;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  transition: color .25s; position: relative; overflow: hidden;
+/* ===== SAVE BTN — animation لافتة ===== */
+.save-btn{
+  margin:16px;padding:18px;width:calc(100% - 32px);
+  background:transparent;color:var(--text);
+  border:2px solid var(--red);border-radius:16px;
+  font-weight:900;font-size:16px;font-family:'Cairo',sans-serif;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;
+  transition:color .25s,transform .15s;
+  position:relative;overflow:hidden;
+  /* pulse glow دايم */
+  animation:savePulse 2s ease-in-out infinite;
 }
-.save-btn::before {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(135deg, var(--red), #a93226);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .35s cubic-bezier(.4,0,.2,1);
-  z-index:0;
+/* shimmer متحرك على الخلفية */
+.save-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(192,57,43,.15) 40%,
+    rgba(232,76,60,.3) 50%,
+    rgba(192,57,43,.15) 60%,
+    transparent 100%);
+  background-size:200% auto;
+  animation:saveShimmer 2s linear infinite;
 }
-.save-btn:hover::before { transform: scaleX(1); }
-.save-btn:hover { color: #fff; }
-.save-btn > * { position:relative; z-index:1; }
-.save-btn:active { transform: scale(.98); }
-.save-si svg { width:22px; height:22px; fill:currentColor; }
-.save-txt { text-align:center; }
-.save-sub { font-size:11px; opacity:.6; display:block; font-weight:400; margin-top:2px; }
+/* fill عند hover */
+.save-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--red),#a93226);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:0;
+}
+.save-btn:hover::before{transform:scaleX(1);}
+.save-btn:hover{color:#fff;animation:none;box-shadow:0 0 25px var(--red-glow);}
+.save-btn:active{transform:scale(.97);}
+.save-btn>*{position:relative;z-index:1;}
+.save-si svg{width:24px;height:24px;fill:currentColor;}
+.save-txt{text-align:center;}
+.save-sub{font-size:11px;opacity:.6;display:block;font-weight:400;margin-top:2px;}
 </style>
 </head>
 <body>
-
 <div class="bg-pattern"></div>
-
 <div class="card">
 
   <!-- TOP BAR -->
@@ -439,7 +347,6 @@ html, body {
         <img src="logo.png" onerror="this.style.display='none'">
       </div>
       <h2 data-ar="شعيب لقطع الغيار" data-en="Shoaib Auto Parts">Shoaib Auto Parts</h2>
-      <div class="specialty" data-ar="متخصص قطع غيار السيارات" data-en="Auto Parts Specialist">Auto Parts Specialist</div>
       <div class="engineer">
         <span data-ar="م. محمد شعيب" data-en="Eng. Mohamed Shoaib">Eng. Mohamed Shoaib</span>
       </div>
@@ -448,62 +355,56 @@ html, body {
 
   <div class="divider d2"></div>
 
-  <!-- BRANDS -->
+  <!-- BRANDS — shimmer على الصورة فقط -->
   <div class="brands-strip d3">
-    <div class="brand-card"><img src="audi.png" alt="Audi"></div>
-    <div class="brand-card"><img src="seat.png" alt="Seat"></div>
-    <div class="brand-card"><img src="vw.png" alt="VW"></div>
-    <div class="brand-card"><img src="skoda.png" alt="Skoda"></div>
+    <div class="brand-card">
+      <div class="brand-img-wrap"><img src="audi.png" alt="Audi"></div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-img-wrap"><img src="seat.png" alt="Seat"></div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-img-wrap"><img src="vw.png" alt="VW"></div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-img-wrap"><img src="skoda.png" alt="Skoda"></div>
+    </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-grid d4">
     <a href="tel:+201055315541" class="cta-btn call">
-      <span class="cta-icon">
-        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-      </span>
+      <span class="cta-icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></span>
       <span class="lbl" data-ar="اتصل الآن" data-en="Call Now">Call Now</span>
     </a>
     <a href="https://wa.me/201055315541" class="cta-btn whatsapp">
-      <span class="cta-icon">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      </span>
+      <span class="cta-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
       <span class="lbl" data-ar="واتساب" data-en="WhatsApp">WhatsApp</span>
     </a>
     <a href="https://maps.app.goo.gl/oEkmmaAeCorEdosd6" class="cta-btn loc">
-      <span class="cta-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      </span>
+      <span class="cta-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
       <span class="lbl" data-ar="الموقع" data-en="Directions">Directions</span>
     </a>
   </div>
 
-  <!-- INFO ROWS -->
+  <!-- INFO -->
   <a href="tel:+201055315541" class="info-row d5">
-    <div class="info-icon-wrap">
-      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-    </div>
+    <div class="info-icon-wrap"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
     <div class="info-text">
       <div class="lbl">Mobile</div>
       <div class="val">+20 105 531 5541</div>
     </div>
-    <div class="info-action">
-      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-    </div>
+    <div class="info-action"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
   </a>
 
   <a href="https://maps.app.goo.gl/oEkmmaAeCorEdosd6" class="info-row d5">
-    <div class="info-icon-wrap">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-    </div>
+    <div class="info-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
     <div class="info-text">
       <div class="lbl">Address</div>
       <div class="val" data-ar="المحلة الكبرى، الغربية" data-en="Al-Mahalla Al-Kubra, Gharbia">Al-Mahalla Al-Kubra, Gharbia</div>
       <div class="sub" data-ar="طريق المحلة / المنصورة" data-en="Mahalla-Mansoura Road">Mahalla-Mansoura Road</div>
     </div>
-    <div class="info-action">
-      <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
-    </div>
+    <div class="info-action"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></div>
   </a>
 
   <!-- TAGLINE -->
@@ -520,18 +421,14 @@ html, body {
   <div class="sec-title d6" data-ar="طرق الدفع" data-en="PAYMENT METHODS">PAYMENT METHODS</div>
   <div class="pay-grid d6">
     <a href="http://vf.eg/vfcash?id=mt&qrId=TtKs7a" class="pay-btn vodafone">
-      <div class="pay-logo-wrap">
-        <img src="vodafone.png" alt="Vodafone">
-      </div>
+      <div class="pay-logo-wrap"><img src="vodafone.png" alt="Vodafone"></div>
       <div class="pay-info">
         <div class="pname">Vodafone Cash</div>
         <div class="ptap" data-ar="اضغط للدفع" data-en="Tap to Pay">Tap to Pay</div>
       </div>
     </a>
     <a href="https://ipn.eg/S/mohamedshoaib253/instapay/0D3A5W" class="pay-btn instapay">
-      <div class="pay-logo-wrap">
-        <img src="instapay.png" alt="InstaPay">
-      </div>
+      <div class="pay-logo-wrap"><img src="instapay.png" alt="InstaPay"></div>
       <div class="pay-info">
         <div class="pname">InstaPay</div>
         <div class="ptap" data-ar="اضغط للدفع" data-en="Tap to Pay">Tap to Pay</div>
@@ -543,21 +440,15 @@ html, body {
   <div class="sec-title d7" data-ar="تابعنا" data-en="FOLLOW US">FOLLOW US</div>
   <div class="social-grid d7">
     <a href="https://www.tiktok.com/@shoaibautoparts?_r=1&_t=ZS-95kosWhaSu2" class="soc-btn tt">
-      <span class="si">
-        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-      </span>
+      <span class="si"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></span>
       <span>TikTok</span>
     </a>
     <a href="https://www.instagram.com/shoaibautoparts?igsh=MWtrdXVhYmJuZ2hkcA==" class="soc-btn ig">
-      <span class="si">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </span>
+      <span class="si"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
       <span>Instagram</span>
     </a>
     <a href="https://www.facebook.com/share/173MZmTahC/?mibextid=wwXIfr" class="soc-btn fb">
-      <span class="si">
-        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </span>
+      <span class="si"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span>
       <span>Facebook</span>
     </a>
   </div>
@@ -573,10 +464,9 @@ html, body {
     </div>
   </button>
 
-</div><!-- end .card -->
+</div>
 
 <script>
-/* ── THEME ── */
 let isDark = true;
 function toggleTheme() {
   isDark = !isDark;
@@ -585,27 +475,19 @@ function toggleTheme() {
   document.getElementById('sun').classList.toggle('active', !isDark);
 }
 
-/* ── LANG ── */
 let currentLang = 'en';
 function setLang(lang) {
   currentLang = lang;
   const html = document.documentElement;
   html.setAttribute('lang', lang);
   html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-
   document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-
   document.querySelectorAll('[data-ar][data-en]').forEach(el => {
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      el.placeholder = el.getAttribute('data-' + lang);
-    } else {
-      el.textContent = el.getAttribute('data-' + lang);
-    }
+    el.textContent = el.getAttribute('data-' + lang);
   });
 }
 
-/* ── SAVE CONTACT ── */
 function saveContact() {
   const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:م. محمد شعيب\nN:شعيب;محمد;;م.;\nORG:شعيب لقطع غيار السيارات\nTEL;TYPE=CELL:+201055315541\nADR;TYPE=WORK:;;المحلة الكبرى - طريق المحلة / المنصورة;الغربية;;مصر\nURL:https://www.facebook.com/share/173MZmTahC/\nEND:VCARD`;
   const blob = new Blob([vcard], { type: 'text/vcard' });
