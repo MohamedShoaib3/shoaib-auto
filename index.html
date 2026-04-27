@@ -4,94 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shoaib Auto Parts</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root[data-theme="dark"] {
-  --bg: #0a0a0a;
-  --card-border: #252525;
-  --text: #f0f0f0;
-  --subtext: #777;
-  --red: #c0392b;
-  --red2: #e74c3c;
-  --red-glow: rgba(192,57,43,0.5);
-  --row-bg: #161616;
-  --toggle-bg: rgba(255,255,255,0.07);
-  --toggle-border: rgba(255,255,255,0.12);
+  --bg:#0a0a0a; --card-border:#252525; --text:#f0f0f0; --subtext:#666;
+  --red:#c0392b; --red2:#e74c3c; --red-glow:rgba(192,57,43,0.5);
+  --row-bg:#161616; --toggle-bg:rgba(255,255,255,0.07); --toggle-border:rgba(255,255,255,0.12);
 }
 :root[data-theme="light"] {
-  --bg: #f0f0f0;
-  --card-border: #ddd;
-  --text: #111;
-  --subtext: #666;
-  --red: #c0392b;
-  --red2: #e74c3c;
-  --red-glow: rgba(192,57,43,0.2);
-  --row-bg: #fff;
-  --toggle-bg: rgba(0,0,0,0.06);
-  --toggle-border: rgba(0,0,0,0.12);
+  --bg:#f0f0f0; --card-border:#ddd; --text:#111; --subtext:#777;
+  --red:#c0392b; --red2:#e74c3c; --red-glow:rgba(192,57,43,0.2);
+  --row-bg:#fff; --toggle-bg:rgba(0,0,0,0.06); --toggle-border:rgba(0,0,0,0.12);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html,body {
-  background:var(--bg); font-family:'Cairo',sans-serif; color:var(--text);
-  display:flex; justify-content:center; min-height:100vh;
-  transition:background .4s,color .4s; overflow-x:hidden;
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{
+  background:var(--bg);font-family:'Cairo',sans-serif;color:var(--text);
+  display:flex;justify-content:center;min-height:100vh;
+  transition:background .4s,color .4s;overflow-x:hidden;
 }
-.card { max-width:430px; width:100%; position:relative; padding-bottom:30px; }
+.card{max-width:430px;width:100%;position:relative;padding-bottom:80px;}
 
 /* ===== BG ===== */
-.bg-pattern {
-  position:fixed; top:0; left:50%; transform:translateX(-50%);
-  width:430px; height:100vh; pointer-events:none; z-index:0; overflow:hidden;
+.bg-pattern{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  width:430px;height:100vh;pointer-events:none;z-index:0;overflow:hidden;
 }
-.bg-pattern::before {
-  content:''; position:absolute; inset:0;
+.bg-pattern::before{
+  content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(192,57,43,.03) 30px,rgba(192,57,43,.03) 32px);
 }
-.bg-pattern::after {
-  content:''; position:absolute; top:-150px; left:-100px;
-  width:520px; height:520px;
+.bg-pattern::after{
+  content:'';position:absolute;top:-150px;left:-100px;width:520px;height:520px;
   background:radial-gradient(circle,rgba(192,57,43,.13) 0%,transparent 65%);
   animation:bgPulse 5s ease-in-out infinite;
 }
-@keyframes bgPulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
 .card>*{position:relative;z-index:1;}
 
 /* ===== KEYFRAMES ===== */
-@keyframes fadeUp {
-  from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)}
-}
-@keyframes glowRotate {
-  0%  { box-shadow: 2px 0   8px rgba(192,57,43,.5),  0 0 0 rgba(192,57,43,0); }
-  25% { box-shadow: 0   2px 8px rgba(232,76,60,.5),  0 0 0 rgba(192,57,43,0); }
-  50% { box-shadow: -2px 0  8px rgba(192,57,43,.5),  0 0 0 rgba(192,57,43,0); }
-  75% { box-shadow: 0  -2px 8px rgba(232,76,60,.5),  0 0 0 rgba(192,57,43,0); }
-  100%{ box-shadow: 2px 0   8px rgba(192,57,43,.5),  0 0 0 rgba(192,57,43,0); }
-}
-@keyframes ringPulse {
-  0%,100%{box-shadow:0 0 0 3px var(--red),0 0 20px var(--red-glow),0 0 50px var(--red-glow)}
-  50%    {box-shadow:0 0 0 3px var(--red2),0 0 35px var(--red-glow),0 0 80px var(--red-glow)}
-}
-@keyframes float {
-  0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)}
-}
-@keyframes nameShine {
-  0%{background-position:0% center} 100%{background-position:200% center}
-}
-@keyframes savePulse {
-  0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.6)}
-  50%    {box-shadow:0 0 0 10px rgba(192,57,43,0)}
-}
-@keyframes saveShimmer {
-  0%  {background-position:-200% center}
-  100%{background-position:200% center}
-}
-@keyframes borderSpin {
-  0%  {background-position:0% 50%}
-  100%{background-position:300% 50%}
-}
+@keyframes bgPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
 
-/* delays */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes ringPulse{
+  0%,100%{box-shadow:0 0 0 3px var(--red),0 0 20px var(--red-glow),0 0 50px var(--red-glow)}
+  50%{box-shadow:0 0 0 3px var(--red2),0 0 35px var(--red-glow),0 0 80px var(--red-glow)}
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+@keyframes nameShine{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* CTA ripple wave */
+@keyframes ctaWave{
+  0%{transform:scale(0);opacity:.5}
+  100%{transform:scale(2.5);opacity:0}
+}
+/* brand glow rotate */
+@keyframes glowRotate{
+  0%  {box-shadow:3px 0 10px rgba(192,57,43,.4)}
+  25% {box-shadow:0 3px 10px rgba(232,76,60,.4)}
+  50% {box-shadow:-3px 0 10px rgba(192,57,43,.4)}
+  75% {box-shadow:0 -3px 10px rgba(232,76,60,.4)}
+  100%{box-shadow:3px 0 10px rgba(192,57,43,.4)}
+}
+/* save pulse */
+@keyframes savePulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.7)}50%{box-shadow:0 0 0 12px rgba(192,57,43,0)}}
+@keyframes saveShimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes borderSpin{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+
+/* scroll-to-top bounce */
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
 .d1{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .05s}
 .d2{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .15s}
 .d3{animation:fadeUp .55s cubic-bezier(.22,.68,0,1.2) both .25s}
@@ -123,7 +106,7 @@ html,body {
 /* ===== HEADER ===== */
 .header{
   display:flex;align-items:center;justify-content:center;
-  gap:16px;padding:4px 20px 10px;
+  gap:14px;padding:4px 20px 8px;
 }
 .avatar{
   width:95px;height:95px;border-radius:50%;overflow:hidden;flex-shrink:0;
@@ -131,55 +114,35 @@ html,body {
 }
 .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 
-.header-info{
-  display:flex;flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:0;
-}
+.header-info{display:flex;flex-direction:column;align-items:flex-start;gap:0;}
 
-/* لوجو — يتمحور مع الصورة بالضبط */
-.logo-wrap{
-  display:flex;align-items:center;
-  line-height:0;
-  /* إزالة أي مسافة زيادة */
-  margin:0;padding:0;
-}
-.logo-wrap img{
-  height:220px;width:auto;
-  object-fit:contain;display:block;
-  /* crop الـ whitespace الزيادة من فوق وتحت */
-  object-position:center;
-}
+.logo-wrap{line-height:0;margin:0;padding:0;}
+.logo-wrap img{height:220px;width:auto;max-width:220px;object-fit:contain;display:block;}
 
-/* اسم المهندس بالألوان — تحت اللوجو مباشرة */
-.engineer{
-  font-size:18px;font-weight:800;
-  margin-top:-10px; /* يلصق بـ اللوجو */
-  text-align: center;
+/* ===== ENGINEER NAME — في وسط الصفحة، تحت الهيدر ===== */
+.engineer-center{
+  text-align:center;
+  padding:2px 16px 10px;
+  font-size:17px;font-weight:800;
   background:linear-gradient(135deg,#e74c3c 0%,#f39c12 50%,#e74c3c 100%);
   background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   animation:nameShine 3s linear infinite;
   white-space:nowrap;
-  padding-right:4px;
 }
 
 /* ===== DIVIDER ===== */
-.divider{height:1px;margin:0 16px 2px;background:linear-gradient(to right,transparent,var(--card-border),transparent);}
+.divider{height:1px;margin:0 16px 4px;background:linear-gradient(to right,transparent,var(--card-border),transparent);}
 
-/* ===== BRANDS — shimmer على الصورة فقط ===== */
+/* ===== BRANDS ===== */
 .brands-strip{display:flex;gap:8px;padding:10px 16px;justify-content:center;}
 .brand-card{
   flex:1;background:var(--row-bg);border:1px solid var(--card-border);
   border-radius:14px;padding:14px 6px;
   display:flex;align-items:center;justify-content:center;
-  transition:transform .2s,border-color .2s;
-  cursor:default;
-  /* glow يدور حول الكارد بهدوء */
+  transition:transform .2s,border-color .2s;cursor:default;
   animation:glowRotate 4s ease-in-out infinite;
 }
-/* كل كارد بـ delay مختلف */
 .brand-card:nth-child(1){animation-delay:0s;}
 .brand-card:nth-child(2){animation-delay:1s;}
 .brand-card:nth-child(3){animation-delay:2s;}
@@ -189,7 +152,7 @@ html,body {
 [data-theme="dark"] .brand-card img{mix-blend-mode:screen;}
 [data-theme="light"] .brand-card img{mix-blend-mode:multiply;filter:brightness(0);}
 
-/* ===== CTA ===== */
+/* ===== CTA — animation wave عند الضغط ===== */
 .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px 10px;}
 .cta-btn{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -198,8 +161,18 @@ html,body {
   transition:transform .18s cubic-bezier(.34,1.56,.64,1),filter .15s;
   position:relative;overflow:hidden;
 }
-.cta-btn:hover{transform:translateY(-4px) scale(1.04);}
-.cta-btn:active{transform:scale(.94);filter:brightness(.88);}
+/* wave ripple عند الضغط */
+.cta-btn::after{
+  content:'';position:absolute;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transform:scale(0);opacity:0;
+  top:50%;left:50%;margin-top:-50px;margin-left:-50px;
+  pointer-events:none;
+}
+.cta-btn:active::after{animation:ctaWave .5s ease-out forwards;}
+.cta-btn:hover{transform:translateY(-4px) scale(1.05);filter:brightness(1.1);}
+.cta-btn:active{transform:scale(.94);}
 .cta-btn .cta-icon{width:28px;height:28px;}
 .cta-btn .cta-icon svg{width:100%;height:100%;fill:white;}
 .cta-btn .lbl{font-size:13px;line-height:1;}
@@ -207,25 +180,30 @@ html,body {
 .whatsapp{background:linear-gradient(150deg,#25d366,#1a9f50);}
 .loc     {background:linear-gradient(150deg,#3b82f6,#1d4ed8);}
 
-/* ===== INFO ROWS ===== */
+/* ===== INFO ROWS — أيقونة واحدة فقط ===== */
 .info-row{
   display:flex;align-items:center;gap:12px;background:var(--row-bg);
-  margin:0 16px 10px;padding:13px 15px;border-radius:14px;
+  margin:0 16px 10px;padding:14px 15px;border-radius:14px;
   border:1px solid var(--card-border);
   transition:transform .2s,box-shadow .2s;text-decoration:none;color:var(--text);
 }
-.info-row:hover{transform:translateY(-2px);box-shadow:0 4px 18px rgba(0,0,0,.18);}
+.info-row:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2);}
 .info-icon-wrap{
-  width:40px;height:40px;background:var(--red);border-radius:50%;
+  width:42px;height:42px;background:var(--red);border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .info-icon-wrap svg{width:18px;height:18px;fill:white;}
 .info-text{flex:1;}
-.info-text .lbl{font-size:10px;color:var(--subtext);margin-bottom:2px;letter-spacing:.5px;}
+.info-text .lbl{font-size:10px;color:var(--subtext);margin-bottom:2px;letter-spacing:.8px;text-transform:uppercase;}
 .info-text .val{font-size:14px;font-weight:700;direction:ltr;}
 .info-text .sub{font-size:11px;color:var(--subtext);margin-top:2px;}
-.info-action{color:var(--red);opacity:.7;}
-.info-action svg{width:20px;height:20px;fill:currentColor;}
+/* سهم بسيط على اليمين */
+.info-arrow{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(192,57,43,.12);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.info-arrow svg{width:14px;height:14px;fill:var(--red);}
 
 /* ===== TAGLINE ===== */
 .tagline{
@@ -234,7 +212,7 @@ html,body {
   border:1px solid var(--card-border);border-radius:12px;
   font-size:11.5px;color:var(--subtext);
 }
-.tagline .shield{color:var(--red);font-size:13px;}
+.tagline .shield{color:var(--red);}
 .tagline .dot{opacity:.3;}
 
 /* ===== SECTION TITLE ===== */
@@ -243,7 +221,7 @@ html,body {
   color:var(--subtext);margin:18px 0 10px;position:relative;
 }
 .sec-title::before,.sec-title::after{content:'';position:absolute;top:50%;width:28%;height:1px;background:var(--card-border);}
-.sec-title::before{right:0;} .sec-title::after{left:0;}
+.sec-title::before{right:0;}.sec-title::after{left:0;}
 
 /* ===== PAYMENT ===== */
 .pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
@@ -252,14 +230,12 @@ html,body {
   text-decoration:none;border:none;transition:transform .15s,filter .15s;
   position:relative;overflow:hidden;
 }
+.pay-btn:hover{transform:translateY(-2px);filter:brightness(1.1);}
 .pay-btn:active{transform:scale(.95);}
 .pay-btn.vodafone{background:linear-gradient(135deg,#e0001a,#b50016);}
 .pay-btn.instapay{background:linear-gradient(135deg,#3a0080,#6a1fd1);}
-.pay-logo-wrap{
-  width:44px;height:44px;border-radius:10px;background:transparent;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;
-}
-.pay-logo-wrap img{width:40px;height:40px;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.2);}
+.pay-logo-wrap{width:42px;height:42px;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pay-logo-wrap img{width:38px;height:38px;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.2);}
 .pay-info .pname{font-size:13px;font-weight:800;color:#fff;}
 .pay-info .ptap{font-size:10px;color:rgba(255,255,255,.65);}
 
@@ -288,7 +264,7 @@ html,body {
 .ig{background:linear-gradient(135deg,#405de6,#833ab4,#c13584,#e1306c,#fd1d1d,#fcb045);}
 .tt{background:#010101;border:1px solid #2a2a2a;}
 
-/* ===== SAVE BTN — animation لافتة ===== */
+/* ===== SAVE BTN ===== */
 .save-btn{
   margin:16px;padding:18px;width:calc(100% - 32px);
   background:transparent;color:var(--text);
@@ -297,22 +273,13 @@ html,body {
   cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;
   transition:color .25s,transform .15s;
   position:relative;overflow:hidden;
-  /* pulse glow دايم */
   animation:savePulse 2s ease-in-out infinite;
 }
-/* shimmer متحرك على الخلفية */
 .save-btn::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(192,57,43,.15) 40%,
-    rgba(232,76,60,.3) 50%,
-    rgba(192,57,43,.15) 60%,
-    transparent 100%);
-  background-size:200% auto;
-  animation:saveShimmer 2s linear infinite;
+  background:linear-gradient(90deg,transparent 0%,rgba(192,57,43,.15) 40%,rgba(232,76,60,.3) 50%,rgba(192,57,43,.15) 60%,transparent 100%);
+  background-size:200% auto;animation:saveShimmer 2s linear infinite;
 }
-/* fill عند hover */
 .save-btn::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(135deg,var(--red),#a93226);
@@ -326,10 +293,32 @@ html,body {
 .save-si svg{width:24px;height:24px;fill:currentColor;}
 .save-txt{text-align:center;}
 .save-sub{font-size:11px;opacity:.6;display:block;font-weight:400;margin-top:2px;}
+
+/* ===== SCROLL TO TOP ===== */
+.scroll-top{
+  position:fixed;
+  bottom:24px;
+  /* في المنتصف بالنسبة للكارد */
+  left:50%;
+  transform:translateX(calc(-50% + 175px)); /* يمين الكارد */
+  width:46px;height:46px;
+  background:var(--red);
+  border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(192,57,43,.5);
+  animation:bounce 2s ease-in-out infinite;
+  transition:opacity .3s,transform .3s;
+  opacity:0;pointer-events:none;
+  z-index:999;
+}
+.scroll-top.visible{opacity:1;pointer-events:all;}
+.scroll-top svg{width:20px;height:20px;fill:white;}
 </style>
 </head>
 <body>
 <div class="bg-pattern"></div>
+
 <div class="card">
 
   <!-- TOP BAR -->
@@ -344,7 +333,7 @@ html,body {
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER: صورة + لوجو -->
   <div class="header d2">
     <div class="avatar">
       <img src="me.jpg" onerror="this.src='https://ui-avatars.com/api/?name=MS&background=c0392b&color=fff&size=200'">
@@ -353,38 +342,22 @@ html,body {
       <div class="logo-wrap">
         <img src="logo.png" onerror="this.style.display='none'">
       </div>
-      <div class="engineer">
-        <span data-ar="م. محمد شعيب" data-en="Eng. Mohamed Shoaib">Eng. Mohamed Shoaib</span>
-      </div>
     </div>
+  </div>
+
+  <!-- اسم المهندس في وسط الصفحة -->
+  <div class="engineer-center d2">
+    <span data-ar="م. محمد شعيب" data-en="Eng. Mohamed Shoaib">Eng. Mohamed Shoaib</span>
   </div>
 
   <div class="divider d2"></div>
 
-    <!-- TAGLINE -->
-  <div class="tagline d5">
-    <span class="shield">🛡️</span>
-    <span data-ar="قطع غيار عالية الجودة" data-en="High Quality Parts">High Quality Parts</span>
-    <span class="dot">•</span>
-    <span data-ar="أفضل الأسعار" data-en="Best Prices">Best Prices</span>
-    <span class="dot">•</span>
-    <span data-ar="خدمة موثوقة" data-en="Trusted Service">Trusted Service</span>
-  </div>
-
-  <!-- BRANDS — shimmer على الصورة فقط -->
+  <!-- BRANDS -->
   <div class="brands-strip d3">
-    <div class="brand-card">
-      <div class="brand-img-wrap"><img src="audi.png" alt="Audi"></div>
-    </div>
-    <div class="brand-card">
-      <div class="brand-img-wrap"><img src="seat.png" alt="Seat"></div>
-    </div>
-    <div class="brand-card">
-      <div class="brand-img-wrap"><img src="vw.png" alt="VW"></div>
-    </div>
-    <div class="brand-card">
-      <div class="brand-img-wrap"><img src="skoda.png" alt="Skoda"></div>
-    </div>
+    <div class="brand-card"><img src="audi.png" alt="Audi"></div>
+    <div class="brand-card"><img src="seat.png" alt="Seat"></div>
+    <div class="brand-card"><img src="vw.png" alt="VW"></div>
+    <div class="brand-card"><img src="skoda.png" alt="Skoda"></div>
   </div>
 
   <!-- CTA -->
@@ -403,27 +376,43 @@ html,body {
     </a>
   </div>
 
-  <!-- INFO -->
+  <!-- INFO ROWS — أيقونة واحدة + سهم -->
   <a href="tel:+201055315541" class="info-row d5">
-    <div class="info-icon-wrap"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+    <div class="info-icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    </div>
     <div class="info-text">
       <div class="lbl">Mobile</div>
       <div class="val">+20 105 531 5541</div>
     </div>
-    <div class="info-action"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+    <div class="info-arrow">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
   </a>
 
   <a href="https://maps.app.goo.gl/oEkmmaAeCorEdosd6" class="info-row d5">
-    <div class="info-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+    <div class="info-icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </div>
     <div class="info-text">
       <div class="lbl">Address</div>
       <div class="val" data-ar="المحلة الكبرى، الغربية" data-en="Al-Mahalla Al-Kubra, Gharbia">Al-Mahalla Al-Kubra, Gharbia</div>
       <div class="sub" data-ar="طريق المحلة / المنصورة" data-en="Mahalla-Mansoura Road">Mahalla-Mansoura Road</div>
     </div>
-    <div class="info-action"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></div>
+    <div class="info-arrow">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
   </a>
 
-
+  <!-- TAGLINE -->
+  <div class="tagline d5">
+    <span class="shield">🛡️</span>
+    <span data-ar="قطع غيار عالية الجودة" data-en="High Quality Parts">High Quality Parts</span>
+    <span class="dot">•</span>
+    <span data-ar="أفضل الأسعار" data-en="Best Prices">Best Prices</span>
+    <span class="dot">•</span>
+    <span data-ar="خدمة موثوقة" data-en="Trusted Service">Trusted Service</span>
+  </div>
 
   <!-- PAYMENT -->
   <div class="sec-title d6" data-ar="طرق الدفع" data-en="PAYMENT METHODS">PAYMENT METHODS</div>
@@ -474,6 +463,11 @@ html,body {
 
 </div>
 
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
+
 <script>
 let isDark = true;
 function toggleTheme() {
@@ -503,6 +497,15 @@ function saveContact() {
   a.href = URL.createObjectURL(blob);
   a.download = 'محمد_شعيب.vcf';
   a.click();
+}
+
+/* Scroll to top button */
+const scrollBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('visible', window.scrollY > 300);
+});
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
