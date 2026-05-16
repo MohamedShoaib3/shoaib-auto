@@ -96,65 +96,38 @@ html,body{
 }
 .lang-opt.active{background:var(--red);color:#fff;}
 
-/* ===== HERO HEADER — logo banner + avatar ===== */
+/* ===== HERO HEADER ===== */
 .hero{
   position:relative;
   width:100%;
-  padding-bottom:60px; /* space for avatar overlap */
-  margin-bottom:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:60px; /* space for top-bar */
+  padding-bottom:16px;
 }
 
-/* Logo banner background */
 .logo-banner{
-  width:100%;
-  height:200px;
-  background:linear-gradient(135deg, #0d0d0d 0%, #1a0505 40%, #2a0808 60%, #0d0d0d 100%);
-  position:relative;
-  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-}
-
-/* Decorative bg pattern inside banner */
-.logo-banner::before{
-  content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(192,57,43,.05) 20px,rgba(192,57,43,.05) 22px);
-}
-.logo-banner::after{
-  content:'';position:absolute;
-  top:-60px;left:50%;transform:translateX(-50%);
-  width:400px;height:300px;
-  background:radial-gradient(circle,rgba(192,57,43,.25) 0%,transparent 65%);
+  width:100%;
+  padding:10px 20px 6px;
+  background:none;
 }
 
 .logo-banner img{
-  height:160px;width:auto;max-width:280px;
+  height:180px;width:auto;max-width:280px;
   object-fit:contain;
-  position:relative;z-index:1;
-  filter:drop-shadow(0 0 20px rgba(192,57,43,.4));
+  filter:drop-shadow(0 0 18px rgba(192,57,43,.45));
 }
 
-/* Fade bottom edge of banner */
-.logo-banner-fade{
-  position:absolute;bottom:0;left:0;right:0;height:60px;
-  background:linear-gradient(to bottom,transparent,var(--bg));
-  z-index:2;
-}
-
-/* Avatar centered, overlapping bottom of banner */
 .avatar-wrap{
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:5;
+  margin-top:8px;
 }
 .avatar{
   width:100px;height:100px;border-radius:50%;overflow:hidden;
   animation:ringPulse 3s ease-in-out infinite, float 4s ease-in-out infinite;
-  background:var(--bg);
-  padding:3px;
 }
 .avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;}
 
@@ -354,10 +327,8 @@ html,body{
     <!-- Logo Banner -->
     <div class="logo-banner">
       <img src="logo.png" alt="Shoaib Auto Parts" onerror="this.style.display='none'">
-      <div class="logo-banner-fade"></div>
     </div>
 
-    <!-- Avatar overlapping bottom of banner -->
     <div class="avatar-wrap">
       <div class="avatar">
         <img src="me.jpg" onerror="this.src='https://ui-avatars.com/api/?name=MS&background=c0392b&color=fff&size=200'">
